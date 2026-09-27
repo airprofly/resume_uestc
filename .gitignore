@@ -1,0 +1,13 @@
+# LaTeX 编译产物目录：全部忽略
+# 注意：.build/ 中含编译生成的 PDF，可能包含个人信息，请勿提交
+.build/*
+!.build/*.pdf
+
+# 本地备份
+*.backup.tex
+*.original.tex
+
+# 编辑器 / 系统文件
+.DS_Store
+*.swp
+*~

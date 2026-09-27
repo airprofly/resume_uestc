@@ -1,0 +1,157 @@
+% ============================================================
+%  LaTeX 简历模版 · 使用说明
+% ============================================================
+%  1. 修改下方 \setResumeStyle 中的图片路径（页眉 / 页脚 / logo / 背景）
+%  2. 修改下方 \setInfo 中的个人信息（页眉与页脚会自动引用这些值）
+%  3. 正文各 \section 按示例格式替换为你自己的内容
+%  4. 编译（须在本目录下执行）：
+%         xelatex -output-directory=.build resume.tex
+%     产物位于 .build/resume.pdf
+%
+%  常用图标（来自 fontawesome5 宏包，可自行查阅替换）：
+%    个人信息 - \faUser        教育背景 - \faGraduationCap
+%    荣誉奖项 - \faStar        竞赛经历 - \faTrophy
+%    实习经历 - \faBriefcase   项目经历 - \faLaptop
+%    科研经历 - \faAtom        技能特长 - \faWrench
+% ============================================================
+
+\documentclass{customResume}
+
+% ---------- 页面样式（图片路径）---------
+\setResumeStyle{
+    headerPath=images/header.png,
+    headerLogoPath=images/uestcLogoWhite.png,
+    headerCharacterPath=images/uestcZhFont.png,
+    footPath=images/footer.png,
+    backgroundPath=images/uestcLogo.pdf
+}
+
+% ---------- 个人信息 ----------
+% school 会显示在页眉右侧；email / phoneNumber / wechat / githubUrl 会显示在页脚
+\setInfo{
+    name=张三,
+    school=计算机科学与技术学院,
+    phoneNumber=13800000000,
+    email=zhangsan@example.com,
+    githubUrl=https://github.com/zhangsan,
+    wechat=zhangsan-wx
+}
+
+% ------------- document -----------
+\begin{document}
+\vspace*{\fill}
+
+% ------------- 个人信息 -----------------
+\begin{figure}[!ht]
+    \begin{minipage}{0.88\textwidth} % 左半边，信息，比如占行宽88%，可以自己调
+        \section{\texorpdfstring{\iconhead{\faUser}{个人信息}}{个人信息}}
+
+        \begin{tabularx}{\linewidth}{
+            >{\bfseries}p{\widthof{\textbf{出生日期:}}}
+            X
+            >{\bfseries}p{\widthof{\textbf{政治面貌:}}}
+            X
+            }
+
+            姓名: & 张三          & 出生日期: & 2000.1              \\
+            电话: & 13800000000 & 邮箱:   & zhangsan@example.com \\
+            \small\faGithub\ GitHub: & {\href{https://github.com/zhangsan}{\textcolor{themeColor}{github.com/zhangsan}}} & 微信:   & zhangsan-wx          \\
+        \end{tabularx}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.1\textwidth}     % 右半边，照片，比例占行宽10%，可以自己调
+        \centering
+        \includegraphics[width=0.8\linewidth]{images/personalPhoto.jpg}
+    \end{minipage}
+\end{figure}
+
+% ------------ 教育背景 ---------
+\section{\iconhead{\faGraduationCap}{教育背景}}
+\begin{table}[h!]
+    \begin{tabularx}{\textwidth}{XXp{\widthof{2021年 -- 预计2025年7月毕业}}}
+        \textbf{示例大学}           & 计算机科学与技术                                 & 2021年 -- 2025年 \\
+        \textbf{GPA}: 3.8/4.0 & \textbf{GPA排名}: 5/120 \textbf{(前 5 \%)} &              \\
+        % 均分与排名哪个高就加粗哪个，不想放的留白即可；数值/名次为量化结果，可加粗。
+    \end{tabularx}
+\end{table}
+
+% ------------- 荣誉奖项 ---------------------
+\section{\iconhead{\faStar}{荣誉奖项}}
+\begin{multicols}{2}
+    \begin{itemize}
+        \item \textbf{示例一等奖学金}
+        \item \textbf{示例二等奖学金}
+    \end{itemize}
+\end{multicols}
+
+% ------------- 竞赛经历 ---------------------
+%（找导师也可能看中这个，因为代表了一定实践能力，但是尽量对口吧，不要运动会都写进去了）
+\section{\iconhead{\faTrophy}{竞赛经历}}
+\begin{table}[!ht]
+    \begin{tabularx}{\textwidth}{
+        >{\bfseries}X
+        >{\bfseries}X
+        p{\widthof{2030年13月}}
+        }
+        示例程序设计竞赛   & 国家级一等奖 & 2024年11月 \\
+        示例数学建模竞赛   & 省级二等奖  & 2024年6月  \\
+        示例创新创业大赛   & 校级三等奖  & 2023年10月 \\
+    \end{tabularx}
+\end{table}
+
+% ---------------- 项目经历 ----------------
+% 项目经历（找导师一般都看中这个），可以改成"科研经历"
+% \faGears 这是齿轮，适合机械类
+% \faFlask 这是烧瓶，适合生化类
+% \faLaptop 这是个笔记本电脑，适合计算机类
+% \faUsers 这是三个人，适合商科
+\section{\iconhead{\faLaptop}{项目经历}}
+% 小技巧，老师想看的重点加粗，比如商科类的一般更想看到数字，工科类的更想看到技术
+% 项目亮点： 每个小点尽量在 35 ~ 40 个字这个范围内，太短了显得不够专业，太长了又不够精炼，且不利于老师快速捕捉重点； 最好 3-4个点。
+
+\subsection{\texorpdfstring{\href{https://github.com/zhangsan/sparse-solver}{\textcolor{themeColor}{基于SIMD的稀疏矩阵求解加速\quad \faGithub}}\hfill \textnormal{独立开发} \hfill \textnormal{2024年3月-2024年6月}}{基于SIMD的稀疏矩阵求解加速}}
+\textbf{项目介绍}：针对科学计算中大规模稀疏线性方程组求解耗时过长、难以满足仿真时效要求的痛点，使用\texttt{C++}从零实现稀疏矩阵求解库，通过深度\textbf{底层优化}在单机环境下达到可接受的计算性能。 \\
+\textbf{项目亮点}：
+\begin{itemize}
+    \item 设计 CSR / ELL 混合存储格式并对行索引重排，改善稀疏矩阵向量乘的内存访问局部性。
+    \item 借助\textbf{AVX2}指令集对核心计算核实现向量化并行加速。
+    \item 结合循环展开、内存对齐等底层优化手段提升指令级并行度；在禁用编译器自动优化（\texttt{-O0}）的严格测试条件下，相较朴素实现性能提升约\textbf{2.6倍}
+\end{itemize}
+\textbf{技术栈}：C++、SIMD（AVX2）
+
+\subsection{\texorpdfstring{示例电商秒杀系统\hfill \textnormal{团队成员} \hfill \textnormal{2024年6月-2024年7月}}{示例电商秒杀系统}}
+\textbf{项目介绍}：基于\textbf{SpringBoot}+\textbf{Vue}前后端分离架构开发秒杀系统，实现商品展示、限时抢购、订单管理等核心功能。 \\
+\textbf{项目亮点}：
+\begin{itemize}
+    \item 构建\textbf{MySQL}持久化存储与\textbf{Redis}缓存加速方案，缓存商品库存并前置拦截无效请求，缓解数据库压力。
+    \item 引入\textbf{RabbitMQ}将下单请求异步化，削峰填谷，支撑高并发场景下的稳定下单。
+    \item 基于\textbf{Vue3}+\textbf{Pinia}构建商品列表与订单管理界面，实时展示抢购状态。
+\end{itemize}
+\textbf{技术栈}：Java、SpringBoot、Spring Data JPA、Vue3、MySQL、Redis、RabbitMQ
+
+% --------------- 科研经历 ------------------
+\section{\iconhead{\faAtom}{科研经历}}
+\subsection{\texorpdfstring{示例研究方向：小样本图像分类\hfill \textnormal{2024年10月-至今}}{示例研究方向}}
+\textbf{研究内容}: 针对标注样本稀缺场景下模型泛化能力不足的问题，研究基于\textbf{元学习}的小样本图像分类方法。以\textbf{原型网络}为基线，从\textbf{特征提取骨干}与\textbf{距离度量方式}两个角度改进类别表征，并对比\textbf{数据增强}与\textbf{自监督预训练}两类缓解过拟合的策略，在多个公开小样本基准上验证方法的有效性。
+
+% ---------------- 技能特长 --------------------------
+\section{\iconhead{\faWrench}{技能特长}}
+\begin{itemize}
+    \item \textbf{编程语言}：熟悉 \textbf{C++}、\textbf{Python}、\textbf{Java}，熟悉 \textbf{Linux} 环境，能够编写 \textbf{Shell} 脚本实现自动化运维
+    \item \textbf{后端框架}：掌握使用 \textbf{Spring Boot} 构建 REST 服务，掌握 \textbf{Spring Data JPA} 进行数据访问开发
+    \item \textbf{前端技术}：掌握 \textbf{HTML}、\textbf{CSS}、\textbf{JavaScript} 基础，掌握 \textbf{Vue3} 框架进行前端组件化开发
+    \item \textbf{工程工具}：熟练使用 \textbf{Git} 与 \textbf{Docker}，掌握 \textbf{CMake}、\textbf{Maven} 构建工具及 \textbf{GitHub Actions} CI 流程
+    \item \textbf{数据库与中间件}：了解 \textbf{MySQL} 数据库设计、\textbf{Redis} 缓存，了解 \textbf{RabbitMQ} 消息队列
+    \item \textbf{其他}：具备良好的英文技术文档阅读能力，能够独立排查并定位开发中的问题
+\end{itemize}
+
+% ------------------ 自我评价（示例，按需启用）----------------------
+% \section{\iconhead{\faInfo}{自我评价}}
+% \begin{itemize}
+%   \item 具备扎实的计算机科学基础，熟练掌握多种编程语言与技术栈，能够快速适应并胜任软件开发相关工作
+%   \item 具有良好的学习能力与问题解决能力，能够独立分析并解决复杂的技术问题
+%   \item 具备较强的团队合作精神与沟通能力，能够有效协作完成项目任务
+% \end{itemize}
+
+\vfill
+\end{document}
