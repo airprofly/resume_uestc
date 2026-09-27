@@ -15,7 +15,7 @@ xelatex -output-directory=.build resume.tex
 - **不要硬编码 `fontset=`**——写死平台字体会换机即挂，留空由 `ctex` 自动探测。
 - **编译不报错 ≠ 编译正确**：缺字体时 `nonstopmode` 仍静默产出豆腐块 PDF，必查 `grep -c 'Missing character' .build/resume.log` 为 `0`。
 - 用 **XeLaTeX**（CJK 排版），依赖 `ctex` 等宏包与系统 `Times New Roman`——换机器失败先查字体 / 宏包。
-- **`.build/` 已 gitignore、不入库**（含 PDF）——产物与日志可能夹带真实信息，旧「提交 `.build/*.pdf`」规则作废。
+- **`.build/*.pdf` 有意入库**（2026-09-27 起）——PDF 作为成品随仓库分发，改完正文记得重新编译并提交更新后的 `.build/resume.pdf`；其余产物（`.aux` / `.log` / `.out`）仍 gitignore，**勿提交**，日志会夹带本机路径等环境信息。
 
 # Architecture
 
@@ -25,7 +25,7 @@ xelatex -output-directory=.build resume.tex
 | [resume.tex](resume.tex) | 正文：`\documentclass{customResume}` → 调上述两个接口 → 写各 `\section` |
 | [images/](images/) | 素材：页眉页脚底图、校徽与校名、占位照片 |
 | [README.md](README.md) | 面向使用者的说明与免责声明 |
-| `.build/` | 编译产物，gitignore |
+| `.build/` | 编译产物：`resume.pdf` 入库随仓库分发，`.aux` / `.log` / `.out` gitignore |
 
 **数据流向**：`resume.tex` 只通过键值接口传值，排版逻辑全在 `.cls` 内；`.cls` 在 `\AtBeginDocument` 时用 tikz overlay 把页眉页脚叠到每页。
 

@@ -1,5 +1,5 @@
-# LaTeX 编译产物目录：全部忽略
-# 注意：.build/ 中含编译生成的 PDF，可能包含个人信息，请勿提交
+# LaTeX 编译产物目录：忽略中间产物，仅放行 resume.pdf
+# resume.pdf 有意入库、随仓库分发；.aux / .log / .out 会夹带本机路径等环境信息，勿提交
 .build/*
 !.build/*.pdf
 
