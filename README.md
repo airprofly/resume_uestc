@@ -2,11 +2,8 @@
 
 # 📄 LaTeX 简历模版
 
-基于自定义 documentclass 的中文简历模版 · 使用 XeLaTeX 编译
-
-![LaTeX](https://img.shields.io/badge/LaTeX-2e-blue.svg)
-![XeLaTeX](https://img.shields.io/badge/XeLaTeX-Required-orange.svg)
-![License](https://img.shields.io/badge/License-Apache%202.0-yellow.svg)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/airprofly/resume_uestc) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![LaTeX](https://img.shields.io/badge/LaTeX-2e-blue.svg)](https://www.latex-project.org/) [![XeLaTeX](https://img.shields.io/badge/XeLaTeX-Required-orange.svg)](https://tug.org/xetex/)
 
 </div>
 
@@ -18,6 +15,8 @@
 
 正文示例为虚构内容（张三 / 示例大学 / 示例项目），与真实个人无关；页眉、页脚与校徽素材的版权归原学校所有，**使用者应替换为自有素材**，详见文末免责声明。
 
+> 📄 **效果预览**：[`.build/resume.pdf`](.build/resume.pdf)，无需编译即可查看。
+
 ## 📌 特性
 
 - ✅ **上手成本低**：不用碰排版——页边距、字号、章节图标均已排好，只改 `\setInfo` 里的中文内容；编译两次即得 PDF，中文自动探测字体
@@ -27,11 +26,12 @@
 ## 📁 目录结构
 
 ```text
-resume/
-├── customResume.cls   # 自定义文档类（核心）
-├── resume.tex         # 简历正文
-├── images/            # 页眉/页脚/logo/照片等图片资源
-├── LICENSE            # Apache License 2.0
+resume_uestc/
+├── customResume.cls      # 自定义文档类（核心）
+├── resume.tex            # 简历正文
+├── images/               # 页眉/页脚/logo/照片等图片资源
+├── .build/resume.pdf     # 编译成品（无需编译即可查看效果）
+├── LICENSE               # Apache License 2.0
 └── README.md
 ```
 
@@ -54,8 +54,8 @@ sudo apt-get install texlive-xetex texlive-latex-extra texlive-fonts-extra
 ## 🚀 快速开始
 
 ```bash
-git clone <本仓库地址>
-cd resume
+git clone https://github.com/airprofly/resume_uestc.git
+cd resume_uestc
 
 # 必须编译两次
 xelatex -output-directory=.build resume.tex
@@ -67,6 +67,8 @@ open .build/resume.pdf
 > ⚠️ **只编一次会让页眉和页脚都堆到页首**，补编一次即可。
 
 ## ✏️ 自定义
+
+> 📝 本节仅列常用改动，**完整使用说明**见 [Notion 文档](https://app.notion.com/p/airprofly/3cd099a124ee81308a23f2681e7ea547?v=3ce099a124ee800c8fee000c1d6b1470)。
 
 ### 1. 个人信息
 
